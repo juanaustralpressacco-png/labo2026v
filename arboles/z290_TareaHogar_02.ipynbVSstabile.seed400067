@@ -1,0 +1,1084 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "F3r8aa3pBigj"
+      },
+      "source": [
+        "# Tarea para el Hogar 02\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "nBm4ktHUBmZt"
+      },
+      "source": [
+        "Esta Tarea para el Hogar 02 llega a sus manos luego de la segunda clase.\n",
+        "<br> Se espera de usted que intente avanzar con los desafios propuestos y que los traiga terminados para la Clase 03, ya que se analizarán los resultados."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "TK-M04ElCESC"
+      },
+      "source": [
+        "##  1. Ensembles de Modelos"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "biPYxgobCOSS"
+      },
+      "source": [
+        "Vea el siguiente video [BBC - The Code - The Wisdom of the Crowd](https://www.youtube.com/watch?v=iOucwX7Z1HU)    ( 5 min)\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "FBszBRyNCcjp"
+      },
+      "source": [
+        "Lea los siguientes artículos\n",
+        "\n",
+        "\n",
+        "*   [The Wisdom of Crowds (Vox Populi) by Francis Galton](https://www.all-about-psychology.com/the-wisdom-of-crowds.html)  (10 min)\n",
+        "*   [A Gentle Introduction to Ensemble Learning](https://machinelearningmastery.com/what-is-ensemble-learning/)  (10 min)\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "x7SebtV2lpHQ"
+      },
+      "source": [
+        "\n",
+        "\n",
+        "---\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "NQcY8u2MDSLT"
+      },
+      "source": [
+        "##  2.  Zero2Hero   primera parte\n",
+        "Se han lanzado los primeros fascículos coleccionables llamados \"from Zero to Hero\" que muy detalladamente, paso a paso enseñan todo lo necesario de R para entender los scripts oficiales de la asignatura.\n",
+        "Están en el repositorio oficial de la asignatura, carpeta  **src/zero2hero**"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "GcO0OSiIEAGy"
+      },
+      "source": [
+        "\n",
+        "\n",
+        "---\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "6MStcyn0EBdT"
+      },
+      "source": [
+        "## 3.  Grid Search"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "gM8RKXDgEIY0"
+      },
+      "source": [
+        "Busque en internet el preciso significado de los hiperparámetros de la librería **rpart**  que está implementando el algoritmo **CART**  Classification and Regression Trees  propuesto en el año 1984 por Leo Breiman:\n",
+        "\n",
+        "*   cp\n",
+        "*   maxdepth\n",
+        "*   minsplit\n",
+        "*   minbucket\n",
+        "\n",
+        "Entienda que valores podría tomar razonablemente cada hiperparámetro,  en particular profundice en el hiperparámetro  **cp**  y en la posibilidad de que tome valores negativos.  Es válido consultar a su amigo de *capacidades especiales*  Claude / ChatGPT\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "_k7eT3HIFy9y"
+      },
+      "source": [
+        "En las siguientes celdas encontrará un notebook incompleto, un esqueleto de código brindado a modo de facilitarle la tarea de codeo y permitir que su valiosa cognición se concentre en temas conceptuales de Ciencia de Datos.\n",
+        "\n",
+        "Modifíquelo agregando loops para que recorra LOS 4 hiperparámetros de rpart  < cp, maxdepth, minsplit, minbucket >, y luego póngalo a correr. Recuerde cambiar por SU semilla\n",
+        "Tenga muy presente la granularidad que eligirá para cada hiperparámetro."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "kmLygy1TYPfg"
+      },
+      "source": [
+        "### Seteo del ambiente en Google Colab"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "OikOm5K2YU3X"
+      },
+      "source": [
+        "Esta parte se debe correr con el runtime en Python3\n",
+        "<br>Ir al menu, Runtime -> Change Runtime Type -> Runtime type ->  **Python 3**"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "4fmV5LyZdFyI"
+      },
+      "source": [
+        "Conectar la virtual machine donde está corriendo Google Colab con el  Google Drive, para poder tener persistencia de archivos."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "id": "ilEZ-bE2VybW",
+        "vscode": {
+          "languageId": "r"
+        },
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "9842faff-c35c-4ecd-a115-74c6e1348238"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Mounted at /content/.drive\n"
+          ]
+        }
+      ],
+      "source": [
+        "# primero establecer el Runtime de Python 3\n",
+        "from google.colab import drive\n",
+        "drive.mount('/content/.drive')"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "ilaKtqWldeWg"
+      },
+      "source": [
+        "los siguientes comandos estan en shell script de Linux\n",
+        "\n",
+        "* Crear las carpetas en el Google Drive\n",
+        "* Bajar el dataset_pequeno al Google Drive y tambien al disco local de la virtual machine que está corriendo Google Colab\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 2,
+      "metadata": {
+        "id": "W8dQFI5QYCFa",
+        "vscode": {
+          "languageId": "r"
+        },
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "e075bf5f-1a0c-44f1-9891-48e1e52efa0c"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": []
+          },
+          "metadata": {},
+          "execution_count": 2
+        }
+      ],
+      "source": [
+        "%%shell\n",
+        "\n",
+        "mkdir -p \"/content/.drive/My Drive/labo1\"\n",
+        "mkdir -p \"/content/buckets\"\n",
+        "ln -sfn \"/content/.drive/My Drive/labo1\" /content/buckets/b1\n",
+        "\n",
+        "\n",
+        "mkdir -p /content/buckets/b1/exp\n",
+        "mkdir -p /content/buckets/b1/datasets\n",
+        "mkdir -p /content/datasets\n",
+        "\n",
+        "\n",
+        "# defino funcion descargar()\n",
+        "descargar() {\n",
+        "  carpeta_destino=\"/content/buckets/b1/datasets/\"\n",
+        "  url_origen=\"https://storage.googleapis.com/open-courses/austral2026-5da5/labo1/\"\n",
+        "  archivo=\"$1\"\n",
+        "\n",
+        "  if ! test -f \"$carpeta_destino\"\"$archivo\"; then\n",
+        "    wget  \"$url_origen\"\"$archivo\"  -O \"$carpeta_destino\"\"$archivo\"\n",
+        "  fi\n",
+        "\n",
+        "  if ! test -f  \"/content/datasets/\"\"$archivo\"; then\n",
+        "    cp  \"$carpeta_destino\"\"$archivo\"  \"/content/datasets/\"\"$archivo\"\n",
+        "  fi;\n",
+        "}\n",
+        "\n",
+        "\n",
+        "# hago la descarga efectiva, llamando a descargar()\n",
+        "descargar  \"dataset_pequeno.csv\""
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "LCEnE_02RuIQ"
+      },
+      "source": [
+        "Esta parte se debe correr con el runtime en lenguaje **R** Ir al menu, Runtime -> Change Runtime Type -> Runtime type -> R"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "SE94XRhWsxkX"
+      },
+      "source": [
+        "limpio el ambiente de R"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 34,
+      "metadata": {
+        "id": "oZG_4br6szlT",
+        "vscode": {
+          "languageId": "r"
+        },
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 129
+        },
+        "outputId": "ad43844c-2a60-4580-ea5f-d0afdf59a9ea"
+      },
+      "outputs": [
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/html": [
+              "<table class=\"dataframe\">\n",
+              "<caption>A matrix: 2 × 6 of type dbl</caption>\n",
+              "<thead>\n",
+              "\t<tr><th></th><th scope=col>used</th><th scope=col>(Mb)</th><th scope=col>gc trigger</th><th scope=col>(Mb)</th><th scope=col>max used</th><th scope=col>(Mb)</th></tr>\n",
+              "</thead>\n",
+              "<tbody>\n",
+              "\t<tr><th scope=row>Ncells</th><td> 935261</td><td>50.0</td><td> 1473300</td><td> 78.7</td><td> 1473300</td><td> 78.7</td></tr>\n",
+              "\t<tr><th scope=row>Vcells</th><td>1802532</td><td>13.8</td><td>65811229</td><td>502.1</td><td>86110935</td><td>657.0</td></tr>\n",
+              "</tbody>\n",
+              "</table>\n"
+            ],
+            "text/markdown": "\nA matrix: 2 × 6 of type dbl\n\n| <!--/--> | used | (Mb) | gc trigger | (Mb) | max used | (Mb) |\n|---|---|---|---|---|---|---|\n| Ncells |  935261 | 50.0 |  1473300 |  78.7 |  1473300 |  78.7 |\n| Vcells | 1802532 | 13.8 | 65811229 | 502.1 | 86110935 | 657.0 |\n\n",
+            "text/latex": "A matrix: 2 × 6 of type dbl\n\\begin{tabular}{r|llllll}\n  & used & (Mb) & gc trigger & (Mb) & max used & (Mb)\\\\\n\\hline\n\tNcells &  935261 & 50.0 &  1473300 &  78.7 &  1473300 &  78.7\\\\\n\tVcells & 1802532 & 13.8 & 65811229 & 502.1 & 86110935 & 657.0\\\\\n\\end{tabular}\n",
+            "text/plain": [
+              "       used    (Mb) gc trigger (Mb)  max used (Mb) \n",
+              "Ncells  935261 50.0  1473300    78.7  1473300  78.7\n",
+              "Vcells 1802532 13.8 65811229   502.1 86110935 657.0"
+            ]
+          },
+          "metadata": {}
+        }
+      ],
+      "source": [
+        "# limpio la memoria\n",
+        "rm(list=ls(all.names=TRUE)) # remove all objects\n",
+        "gc(full=TRUE, verbose=FALSE) # garbage collection"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 35,
+      "metadata": {
+        "id": "JO-12d7YHkWy",
+        "vscode": {
+          "languageId": "r"
+        }
+      },
+      "outputs": [],
+      "source": [
+        "# cargo las librerias que necesito\n",
+        "require(\"data.table\")\n",
+        "require(\"rpart\")\n",
+        "require(\"parallel\")\n",
+        "\n",
+        "if(!require(\"R.utils\")) install.packages(\"R.utils\")\n",
+        "require(\"R.utils\")\n",
+        "\n",
+        "if (!require(\"primes\")) install.packages(\"primes\")\n",
+        "require(\"primes\")"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "0MclPEJ6Q8Bp"
+      },
+      "source": [
+        "Aqui debe poner SU semiila primigenia"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 36,
+      "metadata": {
+        "vscode": {
+          "languageId": "r"
+        },
+        "id": "HXest6trzmwR"
+      },
+      "outputs": [],
+      "source": [
+        "PARAM <- list(400067)\n",
+        "# reemplazar por su primer semilla\n",
+        "PARAM$semilla_primigenia <- 400067\n",
+        "PARAM$qsemillas <- 1\n",
+        "\n",
+        "PARAM$training_pct <- 70L  # entre  1L y 99L"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 38,
+      "metadata": {
+        "id": "Z1dchsrWH4MD",
+        "vscode": {
+          "languageId": "r"
+        }
+      },
+      "outputs": [],
+      "source": [
+        "# particionar agrega una columna llamada fold a un dataset\n",
+        "#  que consiste en una particion estratificada segun agrupa\n",
+        "# particionar( data=dataset, division=c(70,30), agrupa=clase_ternaria, seed=semilla)\n",
+        "#   crea una particion 70, 30\n",
+        "\n",
+        "particionar <- function(data, division, agrupa = \"\", campo = \"fold\", start = 1, seed = NA) {\n",
+        "  if (!is.na(seed)) set.seed(seed)\n",
+        "\n",
+        "  bloque <- unlist(mapply(function(x, y) {\n",
+        "    rep(y, x)\n",
+        "  }, division, seq(from = start, length.out = length(division))))\n",
+        "\n",
+        "  data[, (campo) := sample(rep(bloque, ceiling(.N / length(bloque))))[1:.N],\n",
+        "    by = agrupa\n",
+        "  ]\n",
+        "}\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 39,
+      "metadata": {
+        "id": "xsHwS1CzIA70",
+        "vscode": {
+          "languageId": "r"
+        }
+      },
+      "outputs": [],
+      "source": [
+        "ArbolEstimarGanancia <- function(semilla, training_pct, param_basicos) {\n",
+        "  # particiono estratificadamente el dataset\n",
+        "  particionar(dataset,\n",
+        "    division= c(training_pct, 100L -training_pct),\n",
+        "    agrupa= \"clase_ternaria\",\n",
+        "    seed= semilla # aqui se usa SU semilla\n",
+        "  )\n",
+        "\n",
+        "  # genero el modelo\n",
+        "  # predecir clase_ternaria a partir del resto\n",
+        "  modelo <- rpart(\"clase_ternaria ~ .\",\n",
+        "    data= dataset[fold == 1], # fold==1  es training,  el 70% de los datos\n",
+        "    xval= 0,\n",
+        "    control= param_basicos\n",
+        "  ) # aqui van los parametros del arbol\n",
+        "\n",
+        "  # aplico el modelo a los datos de testing\n",
+        "  prediccion <- predict(modelo, # el modelo que genere recien\n",
+        "    dataset[fold == 2], # fold==2  es testing, el 30% de los datos\n",
+        "    type= \"prob\"\n",
+        "  ) # type= \"prob\"  es que devuelva la probabilidad\n",
+        "\n",
+        "  # prediccion es una matriz con TRES columnas,\n",
+        "  #  llamadas \"BAJA+1\", \"BAJA+2\"  y \"CONTINUA\"\n",
+        "  # cada columna es el vector de probabilidades\n",
+        "\n",
+        "\n",
+        "  # calculo la ganancia en testing  qu es fold==2\n",
+        "  ganancia_test <- dataset[\n",
+        "    fold == 2,\n",
+        "    sum(ifelse(prediccion[, \"BAJA+2\"] > 0.025,\n",
+        "      ifelse(clase_ternaria == \"BAJA+2\", 975000, -25000),\n",
+        "      0\n",
+        "    ))\n",
+        "  ]\n",
+        "\n",
+        "  # escalo la ganancia como si fuera todo el dataset\n",
+        "  ganancia_test_normalizada <- ganancia_test / (( 100 - PARAM$training_pct ) / 100 )\n",
+        "\n",
+        "  return(\n",
+        "    c( list(\"semilla\" = semilla),\n",
+        "      param_basicos,\n",
+        "      list( \"ganancia_test\" = ganancia_test_normalizada )\n",
+        "     )\n",
+        "  )\n",
+        "}\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 40,
+      "metadata": {
+        "id": "BvBVOuhqIEjD",
+        "vscode": {
+          "languageId": "r"
+        }
+      },
+      "outputs": [],
+      "source": [
+        "ArbolesMontecarlo <- function(semillas, param_basicos) {\n",
+        "\n",
+        "  # la funcion mcmapply  llama a la funcion ArbolEstimarGanancia\n",
+        "  #  tantas veces como valores tenga el vector  PARAM$semillas\n",
+        "  salida <- mcmapply(ArbolEstimarGanancia,\n",
+        "    semillas, # paso el vector de semillas\n",
+        "    MoreArgs= list(PARAM$training_pct, param_basicos), # aqui paso el segundo parametro\n",
+        "    SIMPLIFY= FALSE,\n",
+        "    mc.cores= detectCores()\n",
+        "  )\n",
+        "\n",
+        "  return(salida)\n",
+        "}\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 42,
+      "metadata": {
+        "id": "L-DOGHOjIG7G",
+        "vscode": {
+          "languageId": "r"
+        }
+      },
+      "outputs": [],
+      "source": [
+        "# carpeta de trabajo\n",
+        "# por favor cambiar numero de experimento si se cambia el loop principal\n",
+        "setwd(\"/content/buckets/b1/exp\")\n",
+        "experimento <- \"HT2902\"\n",
+        "dir.create(experimento, showWarnings=FALSE)\n",
+        "setwd( paste0(\"/content/buckets/b1/exp/\", experimento ))"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 43,
+      "metadata": {
+        "id": "NM-mrLWcIPo6",
+        "vscode": {
+          "languageId": "r"
+        },
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 209
+        },
+        "outputId": "9a4135a7-aa78-46f2-e0a7-e59260e7ab9f"
+      },
+      "outputs": [
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/html": [
+              "164479"
+            ],
+            "text/markdown": "164479",
+            "text/latex": "164479",
+            "text/plain": [
+              "[1] 164479"
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/html": [
+              "<table class=\"dataframe\">\n",
+              "<caption>A data.table: 3 × 2</caption>\n",
+              "<thead>\n",
+              "\t<tr><th scope=col>clase_ternaria</th><th scope=col>N</th></tr>\n",
+              "\t<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th></tr>\n",
+              "</thead>\n",
+              "<tbody>\n",
+              "\t<tr><td>CONTINUA</td><td>162077</td></tr>\n",
+              "\t<tr><td>BAJA+2  </td><td>  1304</td></tr>\n",
+              "\t<tr><td>BAJA+1  </td><td>  1098</td></tr>\n",
+              "</tbody>\n",
+              "</table>\n"
+            ],
+            "text/markdown": "\nA data.table: 3 × 2\n\n| clase_ternaria &lt;chr&gt; | N &lt;int&gt; |\n|---|---|\n| CONTINUA | 162077 |\n| BAJA+2   |   1304 |\n| BAJA+1   |   1098 |\n\n",
+            "text/latex": "A data.table: 3 × 2\n\\begin{tabular}{ll}\n clase\\_ternaria & N\\\\\n <chr> & <int>\\\\\n\\hline\n\t CONTINUA & 162077\\\\\n\t BAJA+2   &   1304\\\\\n\t BAJA+1   &   1098\\\\\n\\end{tabular}\n",
+            "text/plain": [
+              "  clase_ternaria N     \n",
+              "1 CONTINUA       162077\n",
+              "2 BAJA+2           1304\n",
+              "3 BAJA+1           1098"
+            ]
+          },
+          "metadata": {}
+        }
+      ],
+      "source": [
+        "# lectura del dataset\n",
+        "dataset <- fread(\"/content/datasets/dataset_pequeno.csv\")\n",
+        "\n",
+        "# trabajo solo con los datos de 202107, ultimo mes con clase_ternaria completa\n",
+        "# filtro datos\n",
+        "dataset <- dataset[foto_mes==202107]\n",
+        "\n",
+        "invisible(gc(full=TRUE, verbose=FALSE)) # garbage collection\n",
+        "\n",
+        "nrow(dataset)\n",
+        "dataset[, .N, clase_ternaria]"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 44,
+      "metadata": {
+        "id": "tSlY0EcgIWdi",
+        "vscode": {
+          "languageId": "r"
+        }
+      },
+      "outputs": [],
+      "source": [
+        "# genero numeros primos\n",
+        "primos <- generate_primes(min= 100000, max= 1000000)\n",
+        "set.seed(PARAM$semilla_primigenia) # inicializo\n",
+        "# me quedo con PARAM$qsemillas   semillas\n",
+        "PARAM$semillas <- sample(primos, PARAM$qsemillas )\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 45,
+      "metadata": {
+        "id": "xxCAwIKyIaTl",
+        "vscode": {
+          "languageId": "r"
+        },
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 34
+        },
+        "outputId": "0db0e138-adb9-4321-8087-6d0eb06961d2"
+      },
+      "outputs": [
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/html": [
+              "0"
+            ],
+            "text/markdown": "0",
+            "text/latex": "0",
+            "text/plain": [
+              "[1] 0"
+            ]
+          },
+          "metadata": {}
+        }
+      ],
+      "source": [
+        "# genero la data.table donde van los resultados detallados del Grid Search\n",
+        "# un registro para cada combinacion de < semilla, parametros >\n",
+        "\n",
+        "if(file.exists(\"gridsearch_detalle.txt\")){\n",
+        "  tb_grid_search_detalle <- fread(\"gridsearch_detalle.txt\")\n",
+        "}else{\n",
+        "  tb_grid_search_detalle <- data.table(\n",
+        "    semilla= integer(),\n",
+        "    cp= numeric(),\n",
+        "    maxdepth= integer(),\n",
+        "    minsplit= integer(),\n",
+        "    minbucket= integer(),\n",
+        "    ganancia_test= numeric()\n",
+        "  )\n",
+        "}\n",
+        "\n",
+        "nrow( tb_grid_search_detalle )"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "eAuGBNL8IkOD"
+      },
+      "source": [
+        "Esta es la parte del código que usted debe expandir a TODOS los hiperparámetros de rpart,\n",
+        "<br>ya que actualmente apenas recorre  maxdepth y  minsplit  dejando fijos  cp=-0.5  y minbucket=5"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 46,
+      "metadata": {
+        "id": "ipLHm3STIfmb",
+        "vscode": {
+          "languageId": "r"
+        }
+      },
+      "outputs": [],
+      "source": [
+        "\n",
+        "# itero por los loops anidados para cada hiperparametro\n",
+        "iter <- 0\n",
+        "for (vmax_depth in c(9)) {\n",
+        "  for (vmin_split in c(800)) {\n",
+        "    for (vcp in c(-1)) {\n",
+        "      for (vmin_bucket in c(500)) {\n",
+        "        if (vmin_bucket > vmin_split / 2) next\n",
+        "        iter <- iter + 1\n",
+        "        cat(iter, \" \")\n",
+        "        flush.console()\n",
+        "        if (iter * PARAM$qsemillas < nrow(tb_grid_search_detalle) + 1) next\n",
+        "        param_basicos <- list(\n",
+        "          \"cp\" = vcp,\n",
+        "          \"maxdepth\" = vmax_depth,\n",
+        "          \"minsplit\" = vmin_split,\n",
+        "          \"minbucket\" = vmin_bucket\n",
+        "        )\n",
+        "        ganancias <- ArbolesMontecarlo(PARAM$semillas, param_basicos)\n",
+        "        tb_grid_search_detalle <- rbindlist(\n",
+        "          list(tb_grid_search_detalle, rbindlist(ganancias))\n",
+        "        )\n",
+        "      }\n",
+        "    }\n",
+        "  }\n",
+        "  fwrite(tb_grid_search_detalle, file = \"gridsearch_detalle.txt\", sep = \"\\t\")\n",
+        "}"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 47,
+      "metadata": {
+        "id": "WZaSqYBxiDFu",
+        "vscode": {
+          "languageId": "r"
+        }
+      },
+      "outputs": [],
+      "source": [
+        "fwrite( tb_grid_search_detalle,\n",
+        "   file= \"gridsearch_detalle.txt\",\n",
+        "   sep= \"\\t\"\n",
+        ")"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 48,
+      "metadata": {
+        "id": "STp0duM-RYVJ",
+        "vscode": {
+          "languageId": "r"
+        },
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 34
+        },
+        "outputId": "c9374980-3f53-43ad-fc99-2566f5170cf6"
+      },
+      "outputs": [
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/html": [
+              "0"
+            ],
+            "text/markdown": "0",
+            "text/latex": "0",
+            "text/plain": [
+              "[1] 0"
+            ]
+          },
+          "metadata": {}
+        }
+      ],
+      "source": [
+        "# cantidad de registros de la tabla\n",
+        "nrow(tb_grid_search_detalle)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 49,
+      "metadata": {
+        "id": "k7fhk_H0iNez",
+        "vscode": {
+          "languageId": "r"
+        },
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 98
+        },
+        "outputId": "9467155c-1e8b-4474-a0e8-47acb33851bb"
+      },
+      "outputs": [
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/html": [
+              "<table class=\"dataframe\">\n",
+              "<caption>A data.table: 0 × 6</caption>\n",
+              "<thead>\n",
+              "\t<tr><th scope=col>semilla</th><th scope=col>cp</th><th scope=col>maxdepth</th><th scope=col>minsplit</th><th scope=col>minbucket</th><th scope=col>ganancia_test</th></tr>\n",
+              "\t<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>\n",
+              "</thead>\n",
+              "<tbody>\n",
+              "</tbody>\n",
+              "</table>\n"
+            ],
+            "text/markdown": "\nA data.table: 0 × 6\n\n| semilla &lt;int&gt; | cp &lt;dbl&gt; | maxdepth &lt;int&gt; | minsplit &lt;int&gt; | minbucket &lt;int&gt; | ganancia_test &lt;dbl&gt; |\n|---|---|---|---|---|---|\n\n",
+            "text/latex": "A data.table: 0 × 6\n\\begin{tabular}{llllll}\n semilla & cp & maxdepth & minsplit & minbucket & ganancia\\_test\\\\\n <int> & <dbl> & <int> & <int> & <int> & <dbl>\\\\\n\\hline\n\\end{tabular}\n",
+            "text/plain": [
+              "     semilla cp maxdepth minsplit minbucket ganancia_test"
+            ]
+          },
+          "metadata": {}
+        }
+      ],
+      "source": [
+        "# muestro la tabla\n",
+        "tb_grid_search_detalle"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 50,
+      "metadata": {
+        "id": "DjCxtx8bIsgl",
+        "vscode": {
+          "languageId": "r"
+        }
+      },
+      "outputs": [],
+      "source": [
+        "# genero y grabo el resumen\n",
+        "tb_grid_search <- tb_grid_search_detalle[,\n",
+        "  list( \"ganancia_mean\" = mean(ganancia_test),\n",
+        "    \"qty\" = .N ),\n",
+        "  list( cp, maxdepth, minsplit, minbucket )\n",
+        "]\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 51,
+      "metadata": {
+        "id": "LU29UhL1Ivg5",
+        "vscode": {
+          "languageId": "r"
+        }
+      },
+      "outputs": [],
+      "source": [
+        "# ordeno descendente por ganancia\n",
+        "setorder( tb_grid_search, -ganancia_mean )\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 52,
+      "metadata": {
+        "id": "g-EjGY7aIyWL",
+        "vscode": {
+          "languageId": "r"
+        },
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 411
+        },
+        "outputId": "b16e6ba7-4cea-4c92-8b92-659b894fd635"
+      },
+      "outputs": [
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/html": [
+              "<table class=\"dataframe\">\n",
+              "<caption>A data.table: 10 × 6</caption>\n",
+              "<thead>\n",
+              "\t<tr><th scope=col>cp</th><th scope=col>maxdepth</th><th scope=col>minsplit</th><th scope=col>minbucket</th><th scope=col>ganancia_mean</th><th scope=col>qty</th></tr>\n",
+              "\t<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>\n",
+              "</thead>\n",
+              "<tbody>\n",
+              "\t<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>\n",
+              "\t<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>\n",
+              "\t<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>\n",
+              "\t<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>\n",
+              "\t<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>\n",
+              "\t<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>\n",
+              "\t<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>\n",
+              "\t<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>\n",
+              "\t<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>\n",
+              "\t<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>\n",
+              "</tbody>\n",
+              "</table>\n"
+            ],
+            "text/markdown": "\nA data.table: 10 × 6\n\n| cp &lt;dbl&gt; | maxdepth &lt;int&gt; | minsplit &lt;int&gt; | minbucket &lt;int&gt; | ganancia_mean &lt;dbl&gt; | qty &lt;int&gt; |\n|---|---|---|---|---|---|\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n\n",
+            "text/latex": "A data.table: 10 × 6\n\\begin{tabular}{llllll}\n cp & maxdepth & minsplit & minbucket & ganancia\\_mean & qty\\\\\n <dbl> & <int> & <int> & <int> & <dbl> & <int>\\\\\n\\hline\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\\end{tabular}\n",
+            "text/plain": [
+              "   cp maxdepth minsplit minbucket ganancia_mean qty\n",
+              "1  NA NA       NA       NA        NA            NA \n",
+              "2  NA NA       NA       NA        NA            NA \n",
+              "3  NA NA       NA       NA        NA            NA \n",
+              "4  NA NA       NA       NA        NA            NA \n",
+              "5  NA NA       NA       NA        NA            NA \n",
+              "6  NA NA       NA       NA        NA            NA \n",
+              "7  NA NA       NA       NA        NA            NA \n",
+              "8  NA NA       NA       NA        NA            NA \n",
+              "9  NA NA       NA       NA        NA            NA \n",
+              "10 NA NA       NA       NA        NA            NA "
+            ]
+          },
+          "metadata": {}
+        }
+      ],
+      "source": [
+        "# veo los 10 mejores hiperparámetros\n",
+        "tb_grid_search[1:10]"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 53,
+      "metadata": {
+        "id": "K3S-I2PTI5ZE",
+        "vscode": {
+          "languageId": "r"
+        }
+      },
+      "outputs": [],
+      "source": [
+        "# genero un id a la tabla\n",
+        "tb_grid_search[, id := .I ]\n",
+        "\n",
+        "fwrite( tb_grid_search,\n",
+        "  file= \"gridsearch.txt\",\n",
+        "  sep= \"\\t\"\n",
+        ")\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "tb_grid_search[c(1, 2, 5, 10, 50, 100)]\n",
+        "fwrite( tb_grid_search,\n",
+        "  file= \"gridsearch.txt\",\n",
+        "  sep= \"\\t\"\n",
+        ")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 286
+        },
+        "id": "78qZMdRs5gjT",
+        "outputId": "1c6e15fb-94ff-44ed-91f2-54643c8c3320"
+      },
+      "execution_count": 54,
+      "outputs": [
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/html": [
+              "<table class=\"dataframe\">\n",
+              "<caption>A data.table: 6 × 7</caption>\n",
+              "<thead>\n",
+              "\t<tr><th scope=col>cp</th><th scope=col>maxdepth</th><th scope=col>minsplit</th><th scope=col>minbucket</th><th scope=col>ganancia_mean</th><th scope=col>qty</th><th scope=col>id</th></tr>\n",
+              "\t<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>\n",
+              "</thead>\n",
+              "<tbody>\n",
+              "\t<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>\n",
+              "\t<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>\n",
+              "\t<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>\n",
+              "\t<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>\n",
+              "\t<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>\n",
+              "\t<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>\n",
+              "</tbody>\n",
+              "</table>\n"
+            ],
+            "text/markdown": "\nA data.table: 6 × 7\n\n| cp &lt;dbl&gt; | maxdepth &lt;int&gt; | minsplit &lt;int&gt; | minbucket &lt;int&gt; | ganancia_mean &lt;dbl&gt; | qty &lt;int&gt; | id &lt;int&gt; |\n|---|---|---|---|---|---|---|\n| NA | NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA | NA |\n\n",
+            "text/latex": "A data.table: 6 × 7\n\\begin{tabular}{lllllll}\n cp & maxdepth & minsplit & minbucket & ganancia\\_mean & qty & id\\\\\n <dbl> & <int> & <int> & <int> & <dbl> & <int> & <int>\\\\\n\\hline\n\t NA & NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA & NA\\\\\n\\end{tabular}\n",
+            "text/plain": [
+              "  cp maxdepth minsplit minbucket ganancia_mean qty id\n",
+              "1 NA NA       NA       NA        NA            NA  NA\n",
+              "2 NA NA       NA       NA        NA            NA  NA\n",
+              "3 NA NA       NA       NA        NA            NA  NA\n",
+              "4 NA NA       NA       NA        NA            NA  NA\n",
+              "5 NA NA       NA       NA        NA            NA  NA\n",
+              "6 NA NA       NA       NA        NA            NA  NA"
+            ]
+          },
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "dir.create(\"/content/buckets/b1/exp/HT2900\", showWarnings=FALSE)\n",
+        "setwd(\"/content/buckets/b1/exp/HT2900\")\n",
+        "tb_grid_search <- fread(\"gridsearch.txt\")\n",
+        "setorder(tb_grid_search, -ganancia_mean)\n",
+        "nrow(tb_grid_search)\n",
+        "tb_grid_search[c(1, 2, 5, 10, 50, 100)]"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 303
+        },
+        "id": "WLuPCDsFJns3",
+        "outputId": "7027b236-0fb7-437c-b9fc-f7252c126b4a"
+      },
+      "execution_count": 20,
+      "outputs": [
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/html": [
+              "486"
+            ],
+            "text/markdown": "486",
+            "text/latex": "486",
+            "text/plain": [
+              "[1] 486"
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/html": [
+              "<table class=\"dataframe\">\n",
+              "<caption>A data.table: 6 × 7</caption>\n",
+              "<thead>\n",
+              "\t<tr><th scope=col>cp</th><th scope=col>maxdepth</th><th scope=col>minsplit</th><th scope=col>minbucket</th><th scope=col>ganancia_mean</th><th scope=col>qty</th><th scope=col>id</th></tr>\n",
+              "\t<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>\n",
+              "</thead>\n",
+              "<tbody>\n",
+              "\t<tr><td>-1.0</td><td>10</td><td>800</td><td>  5</td><td>539166667</td><td>1</td><td>  1</td></tr>\n",
+              "\t<tr><td>-0.5</td><td>10</td><td>800</td><td>  5</td><td>539166667</td><td>1</td><td>  2</td></tr>\n",
+              "\t<tr><td>-1.0</td><td> 8</td><td>800</td><td>  5</td><td>531500000</td><td>1</td><td>  5</td></tr>\n",
+              "\t<tr><td>-0.5</td><td>12</td><td>800</td><td>  5</td><td>529166667</td><td>1</td><td> 10</td></tr>\n",
+              "\t<tr><td>-0.5</td><td> 4</td><td>400</td><td>100</td><td>504750000</td><td>1</td><td> 50</td></tr>\n",
+              "\t<tr><td>-1.0</td><td> 4</td><td>100</td><td> 50</td><td>495333333</td><td>1</td><td>100</td></tr>\n",
+              "</tbody>\n",
+              "</table>\n"
+            ],
+            "text/markdown": "\nA data.table: 6 × 7\n\n| cp &lt;dbl&gt; | maxdepth &lt;int&gt; | minsplit &lt;int&gt; | minbucket &lt;int&gt; | ganancia_mean &lt;dbl&gt; | qty &lt;int&gt; | id &lt;int&gt; |\n|---|---|---|---|---|---|---|\n| -1.0 | 10 | 800 |   5 | 539166667 | 1 |   1 |\n| -0.5 | 10 | 800 |   5 | 539166667 | 1 |   2 |\n| -1.0 |  8 | 800 |   5 | 531500000 | 1 |   5 |\n| -0.5 | 12 | 800 |   5 | 529166667 | 1 |  10 |\n| -0.5 |  4 | 400 | 100 | 504750000 | 1 |  50 |\n| -1.0 |  4 | 100 |  50 | 495333333 | 1 | 100 |\n\n",
+            "text/latex": "A data.table: 6 × 7\n\\begin{tabular}{lllllll}\n cp & maxdepth & minsplit & minbucket & ganancia\\_mean & qty & id\\\\\n <dbl> & <int> & <int> & <int> & <dbl> & <int> & <int>\\\\\n\\hline\n\t -1.0 & 10 & 800 &   5 & 539166667 & 1 &   1\\\\\n\t -0.5 & 10 & 800 &   5 & 539166667 & 1 &   2\\\\\n\t -1.0 &  8 & 800 &   5 & 531500000 & 1 &   5\\\\\n\t -0.5 & 12 & 800 &   5 & 529166667 & 1 &  10\\\\\n\t -0.5 &  4 & 400 & 100 & 504750000 & 1 &  50\\\\\n\t -1.0 &  4 & 100 &  50 & 495333333 & 1 & 100\\\\\n\\end{tabular}\n",
+            "text/plain": [
+              "  cp   maxdepth minsplit minbucket ganancia_mean qty id \n",
+              "1 -1.0 10       800        5       539166667     1     1\n",
+              "2 -0.5 10       800        5       539166667     1     2\n",
+              "3 -1.0  8       800        5       531500000     1     5\n",
+              "4 -0.5 12       800        5       529166667     1    10\n",
+              "5 -0.5  4       400      100       504750000     1    50\n",
+              "6 -1.0  4       100       50       495333333     1   100"
+            ]
+          },
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "1rYHk1YkI_9k"
+      },
+      "source": [
+        "# 4.  Análisis de resultados de Grid Search"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "ZTJgPhMWJHTk"
+      },
+      "source": [
+        "La salida de la corrida anterior queda en  exp/HT2900  que corresponde a su Google Drive\n",
+        "<br>HT significa Hyperparameter Tuning\n",
+        "<br>El Grid Search es un método de fuerza bruta de un altísimo costo computacional.\n",
+        "<br>Queremos ver si es posible crear un algoritmo de optimización de hiperparámetros que se ahorre recorrer ciertas porciones muy malas del espacio de búsqueda. Algo del estilo “cada vez que pruebo una combinación de hiperparámetros donde  cp > 1 , la ganancia es muy mala, con lo cual ni vale la pena perder el tiempo explorando en esa región”\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "IaVgMu4tPwyB"
+      },
+      "source": [
+        "<br>Levante el archivo de salida gridsearch.txt  a una planilla tipo Excel y analícelo detenidamente\n",
+        "<br>Ordene por ganancia_mean descendente, de la mejor a la peor\n",
+        "<br>En la Planilla Colaborativa, hoja \"Grid Search\"  cargue  la posición 1, 2, 5, 10, 50 y 100 de su salida\n",
+        "<br>\n",
+        "<br>El de mayor ganancia_mean  decimos que es el primero del ranking\n",
+        "En el channel  #Tarea Hogar 02 , topic Analisis Grid Search   intente contestar estas preguntas:\n",
+        "\n",
+        "* ¿Qué combinaciones de hiperparámetros poseen una ganancia muy buena?\n",
+        "* ¿Hay algún hiperparámetro que para cierto valor siempre genera una ganancia muy mala, independientemente de lo que valgan los otros hiperparámetros?\n",
+        "* ¿Qué combinaciones de hiperparámetros es pésima y hubiera sido bueno ahorrarse esas corridas?\n",
+        "\n",
+        "(tiempo estimado 30 minutos, dificultad media )\n"
+      ]
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "display_name": "R",
+      "name": "ir"
+    },
+    "language_info": {
+      "name": "R"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
