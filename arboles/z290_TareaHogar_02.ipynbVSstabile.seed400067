@@ -269,7 +269,7 @@
     },
     {
       "cell_type": "code",
-      "execution_count": 34,
+      "execution_count": 78,
       "metadata": {
         "id": "oZG_4br6szlT",
         "vscode": {
@@ -279,7 +279,7 @@
           "base_uri": "https://localhost:8080/",
           "height": 129
         },
-        "outputId": "ad43844c-2a60-4580-ea5f-d0afdf59a9ea"
+        "outputId": "33b31993-c3eb-4772-8fa6-4ce281ab6b1c"
       },
       "outputs": [
         {
@@ -292,17 +292,17 @@
               "\t<tr><th></th><th scope=col>used</th><th scope=col>(Mb)</th><th scope=col>gc trigger</th><th scope=col>(Mb)</th><th scope=col>max used</th><th scope=col>(Mb)</th></tr>\n",
               "</thead>\n",
               "<tbody>\n",
-              "\t<tr><th scope=row>Ncells</th><td> 935261</td><td>50.0</td><td> 1473300</td><td> 78.7</td><td> 1473300</td><td> 78.7</td></tr>\n",
-              "\t<tr><th scope=row>Vcells</th><td>1802532</td><td>13.8</td><td>65811229</td><td>502.1</td><td>86110935</td><td>657.0</td></tr>\n",
+              "\t<tr><th scope=row>Ncells</th><td> 935366</td><td>50.0</td><td> 1473300</td><td> 78.7</td><td> 1473300</td><td> 78.7</td></tr>\n",
+              "\t<tr><th scope=row>Vcells</th><td>1802709</td><td>13.8</td><td>32503075</td><td>248.0</td><td>86110935</td><td>657.0</td></tr>\n",
               "</tbody>\n",
               "</table>\n"
             ],
-            "text/markdown": "\nA matrix: 2 × 6 of type dbl\n\n| <!--/--> | used | (Mb) | gc trigger | (Mb) | max used | (Mb) |\n|---|---|---|---|---|---|---|\n| Ncells |  935261 | 50.0 |  1473300 |  78.7 |  1473300 |  78.7 |\n| Vcells | 1802532 | 13.8 | 65811229 | 502.1 | 86110935 | 657.0 |\n\n",
-            "text/latex": "A matrix: 2 × 6 of type dbl\n\\begin{tabular}{r|llllll}\n  & used & (Mb) & gc trigger & (Mb) & max used & (Mb)\\\\\n\\hline\n\tNcells &  935261 & 50.0 &  1473300 &  78.7 &  1473300 &  78.7\\\\\n\tVcells & 1802532 & 13.8 & 65811229 & 502.1 & 86110935 & 657.0\\\\\n\\end{tabular}\n",
+            "text/markdown": "\nA matrix: 2 × 6 of type dbl\n\n| <!--/--> | used | (Mb) | gc trigger | (Mb) | max used | (Mb) |\n|---|---|---|---|---|---|---|\n| Ncells |  935366 | 50.0 |  1473300 |  78.7 |  1473300 |  78.7 |\n| Vcells | 1802709 | 13.8 | 32503075 | 248.0 | 86110935 | 657.0 |\n\n",
+            "text/latex": "A matrix: 2 × 6 of type dbl\n\\begin{tabular}{r|llllll}\n  & used & (Mb) & gc trigger & (Mb) & max used & (Mb)\\\\\n\\hline\n\tNcells &  935366 & 50.0 &  1473300 &  78.7 &  1473300 &  78.7\\\\\n\tVcells & 1802709 & 13.8 & 32503075 & 248.0 & 86110935 & 657.0\\\\\n\\end{tabular}\n",
             "text/plain": [
               "       used    (Mb) gc trigger (Mb)  max used (Mb) \n",
-              "Ncells  935261 50.0  1473300    78.7  1473300  78.7\n",
-              "Vcells 1802532 13.8 65811229   502.1 86110935 657.0"
+              "Ncells  935366 50.0  1473300    78.7  1473300  78.7\n",
+              "Vcells 1802709 13.8 32503075   248.0 86110935 657.0"
             ]
           },
           "metadata": {}
@@ -316,7 +316,7 @@
     },
     {
       "cell_type": "code",
-      "execution_count": 35,
+      "execution_count": 79,
       "metadata": {
         "id": "JO-12d7YHkWy",
         "vscode": {
@@ -348,7 +348,7 @@
     },
     {
       "cell_type": "code",
-      "execution_count": 36,
+      "execution_count": 80,
       "metadata": {
         "vscode": {
           "languageId": "r"
@@ -357,9 +357,9 @@
       },
       "outputs": [],
       "source": [
-        "PARAM <- list(400067)\n",
+        "PARAM <- list(810013)\n",
         "# reemplazar por su primer semilla\n",
-        "PARAM$semilla_primigenia <- 400067\n",
+        "PARAM$semilla_primigenia <- 810013\n",
         "PARAM$qsemillas <- 1\n",
         "\n",
         "PARAM$training_pct <- 70L  # entre  1L y 99L"
@@ -367,7 +367,7 @@
     },
     {
       "cell_type": "code",
-      "execution_count": 38,
+      "execution_count": 81,
       "metadata": {
         "id": "Z1dchsrWH4MD",
         "vscode": {
@@ -396,7 +396,7 @@
     },
     {
       "cell_type": "code",
-      "execution_count": 39,
+      "execution_count": 82,
       "metadata": {
         "id": "xsHwS1CzIA70",
         "vscode": {
@@ -455,7 +455,7 @@
     },
     {
       "cell_type": "code",
-      "execution_count": 40,
+      "execution_count": 83,
       "metadata": {
         "id": "BvBVOuhqIEjD",
         "vscode": {
@@ -481,7 +481,7 @@
     },
     {
       "cell_type": "code",
-      "execution_count": 42,
+      "execution_count": 84,
       "metadata": {
         "id": "L-DOGHOjIG7G",
         "vscode": {
@@ -500,7 +500,7 @@
     },
     {
       "cell_type": "code",
-      "execution_count": 43,
+      "execution_count": 85,
       "metadata": {
         "id": "NM-mrLWcIPo6",
         "vscode": {
@@ -510,7 +510,7 @@
           "base_uri": "https://localhost:8080/",
           "height": 209
         },
-        "outputId": "9a4135a7-aa78-46f2-e0a7-e59260e7ab9f"
+        "outputId": "ab32fe1a-e915-4a57-cf15-68b7c652f0e5"
       },
       "outputs": [
         {
@@ -572,7 +572,7 @@
     },
     {
       "cell_type": "code",
-      "execution_count": 44,
+      "execution_count": 86,
       "metadata": {
         "id": "tSlY0EcgIWdi",
         "vscode": {
@@ -590,7 +590,7 @@
     },
     {
       "cell_type": "code",
-      "execution_count": 45,
+      "execution_count": 87,
       "metadata": {
         "id": "xxCAwIKyIaTl",
         "vscode": {
@@ -600,7 +600,7 @@
           "base_uri": "https://localhost:8080/",
           "height": 34
         },
-        "outputId": "0db0e138-adb9-4321-8087-6d0eb06961d2"
+        "outputId": "5e5cd25b-02fd-4acf-95d4-c28f175c83fd"
       },
       "outputs": [
         {
@@ -650,7 +650,7 @@
     },
     {
       "cell_type": "code",
-      "execution_count": 46,
+      "execution_count": 88,
       "metadata": {
         "id": "ipLHm3STIfmb",
         "vscode": {
@@ -666,6 +666,7 @@
         "  for (vmin_split in c(800)) {\n",
         "    for (vcp in c(-1)) {\n",
         "      for (vmin_bucket in c(500)) {\n",
+        "        # if (vmin_bucket > vmin_split / 2) next\n",
         "        if (vmin_bucket > vmin_split / 2) next\n",
         "        iter <- iter + 1\n",
         "        cat(iter, \" \")\n",
@@ -690,7 +691,7 @@
     },
     {
       "cell_type": "code",
-      "execution_count": 47,
+      "execution_count": 89,
       "metadata": {
         "id": "WZaSqYBxiDFu",
         "vscode": {
@@ -707,7 +708,7 @@
     },
     {
       "cell_type": "code",
-      "execution_count": 48,
+      "execution_count": 90,
       "metadata": {
         "id": "STp0duM-RYVJ",
         "vscode": {
@@ -717,7 +718,7 @@
           "base_uri": "https://localhost:8080/",
           "height": 34
         },
-        "outputId": "c9374980-3f53-43ad-fc99-2566f5170cf6"
+        "outputId": "df88f26f-c884-416c-ea41-a2e3598c88e6"
       },
       "outputs": [
         {
@@ -742,7 +743,7 @@
     },
     {
       "cell_type": "code",
-      "execution_count": 49,
+      "execution_count": 75,
       "metadata": {
         "id": "k7fhk_H0iNez",
         "vscode": {
@@ -752,7 +753,7 @@
           "base_uri": "https://localhost:8080/",
           "height": 98
         },
-        "outputId": "9467155c-1e8b-4474-a0e8-47acb33851bb"
+        "outputId": "b681e9fe-ac83-4c5a-a899-9bad6f3fd868"
       },
       "outputs": [
         {
@@ -763,14 +764,14 @@
               "<caption>A data.table: 0 × 6</caption>\n",
               "<thead>\n",
               "\t<tr><th scope=col>semilla</th><th scope=col>cp</th><th scope=col>maxdepth</th><th scope=col>minsplit</th><th scope=col>minbucket</th><th scope=col>ganancia_test</th></tr>\n",
-              "\t<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>\n",
+              "\t<tr><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;lgl&gt;</th></tr>\n",
               "</thead>\n",
               "<tbody>\n",
               "</tbody>\n",
               "</table>\n"
             ],
-            "text/markdown": "\nA data.table: 0 × 6\n\n| semilla &lt;int&gt; | cp &lt;dbl&gt; | maxdepth &lt;int&gt; | minsplit &lt;int&gt; | minbucket &lt;int&gt; | ganancia_test &lt;dbl&gt; |\n|---|---|---|---|---|---|\n\n",
-            "text/latex": "A data.table: 0 × 6\n\\begin{tabular}{llllll}\n semilla & cp & maxdepth & minsplit & minbucket & ganancia\\_test\\\\\n <int> & <dbl> & <int> & <int> & <int> & <dbl>\\\\\n\\hline\n\\end{tabular}\n",
+            "text/markdown": "\nA data.table: 0 × 6\n\n| semilla &lt;lgl&gt; | cp &lt;lgl&gt; | maxdepth &lt;lgl&gt; | minsplit &lt;lgl&gt; | minbucket &lt;lgl&gt; | ganancia_test &lt;lgl&gt; |\n|---|---|---|---|---|---|\n\n",
+            "text/latex": "A data.table: 0 × 6\n\\begin{tabular}{llllll}\n semilla & cp & maxdepth & minsplit & minbucket & ganancia\\_test\\\\\n <lgl> & <lgl> & <lgl> & <lgl> & <lgl> & <lgl>\\\\\n\\hline\n\\end{tabular}\n",
             "text/plain": [
               "     semilla cp maxdepth minsplit minbucket ganancia_test"
             ]
@@ -785,7 +786,7 @@
     },
     {
       "cell_type": "code",
-      "execution_count": 50,
+      "execution_count": 69,
       "metadata": {
         "id": "DjCxtx8bIsgl",
         "vscode": {
@@ -804,7 +805,7 @@
     },
     {
       "cell_type": "code",
-      "execution_count": 51,
+      "execution_count": 70,
       "metadata": {
         "id": "LU29UhL1Ivg5",
         "vscode": {
@@ -819,7 +820,7 @@
     },
     {
       "cell_type": "code",
-      "execution_count": 52,
+      "execution_count": 71,
       "metadata": {
         "id": "g-EjGY7aIyWL",
         "vscode": {
@@ -829,7 +830,7 @@
           "base_uri": "https://localhost:8080/",
           "height": 411
         },
-        "outputId": "b16e6ba7-4cea-4c92-8b92-659b894fd635"
+        "outputId": "b3238f7b-d651-49b6-fa7a-4dbb37dc6c6f"
       },
       "outputs": [
         {
@@ -840,7 +841,7 @@
               "<caption>A data.table: 10 × 6</caption>\n",
               "<thead>\n",
               "\t<tr><th scope=col>cp</th><th scope=col>maxdepth</th><th scope=col>minsplit</th><th scope=col>minbucket</th><th scope=col>ganancia_mean</th><th scope=col>qty</th></tr>\n",
-              "\t<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>\n",
+              "\t<tr><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>\n",
               "</thead>\n",
               "<tbody>\n",
               "\t<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>\n",
@@ -856,8 +857,8 @@
               "</tbody>\n",
               "</table>\n"
             ],
-            "text/markdown": "\nA data.table: 10 × 6\n\n| cp &lt;dbl&gt; | maxdepth &lt;int&gt; | minsplit &lt;int&gt; | minbucket &lt;int&gt; | ganancia_mean &lt;dbl&gt; | qty &lt;int&gt; |\n|---|---|---|---|---|---|\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n\n",
-            "text/latex": "A data.table: 10 × 6\n\\begin{tabular}{llllll}\n cp & maxdepth & minsplit & minbucket & ganancia\\_mean & qty\\\\\n <dbl> & <int> & <int> & <int> & <dbl> & <int>\\\\\n\\hline\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\\end{tabular}\n",
+            "text/markdown": "\nA data.table: 10 × 6\n\n| cp &lt;lgl&gt; | maxdepth &lt;lgl&gt; | minsplit &lt;lgl&gt; | minbucket &lt;lgl&gt; | ganancia_mean &lt;dbl&gt; | qty &lt;int&gt; |\n|---|---|---|---|---|---|\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n| NA | NA | NA | NA | NA | NA |\n\n",
+            "text/latex": "A data.table: 10 × 6\n\\begin{tabular}{llllll}\n cp & maxdepth & minsplit & minbucket & ganancia\\_mean & qty\\\\\n <lgl> & <lgl> & <lgl> & <lgl> & <dbl> & <int>\\\\\n\\hline\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\t NA & NA & NA & NA & NA & NA\\\\\n\\end{tabular}\n",
             "text/plain": [
               "   cp maxdepth minsplit minbucket ganancia_mean qty\n",
               "1  NA NA       NA       NA        NA            NA \n",
